@@ -1,0 +1,31 @@
+{
+  "name": "node-http-service",
+  "version": "1.0.0",
+  "description": "Simple node http service",
+  "main": "index.js",
+  "scripts": {
+    "start": "NODE_ENV=prod node app.js",
+    "dev": "NODE_ENV=dev nodemon app.js",
+    "test": "NODE_ENV=test mocha --timeout 10000"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "helmet": "^3.18.0",
+    "mongoose": "^5.6.3",
+    "morgan": "^1.9.1",
+    "socket.io": "^2.2.0",
+    "socket.io-client": "^2.2.0",
+    "swagger-ui-express": "^4.0.7"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "chai-http": "^4.3.0",
+    "chai-like": "^1.1.1",
+    "chai-things": "^0.2.0",
+    "mocha": "^6.1.4",
+    "nodemon": "^1.19.1"
+  }
+}
