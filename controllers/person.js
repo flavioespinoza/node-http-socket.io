@@ -52,10 +52,6 @@ exports.addPerson = async (req, res, next) => {
 	}
 };
 
-
-
-
-
 exports.getPerson = async (req, res, next) => {
 	try {
 		const person = await service.getPerson(req.params.id);
