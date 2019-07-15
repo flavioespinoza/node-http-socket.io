@@ -1,11 +1,13 @@
 'use strict';
 
-const express = require('express'),
-      app = express();
+const express = require('express');
+const app = express();
+
 const morgan = require('morgan');
 const helmet = require('helmet');
-const swaggerUi = require('swagger-ui-express'),
-      swaggerDocument = require('./swagger.json');
+
+const swaggerUi = require('swagger-ui-express');
+const swaggerDocument = require('./swagger.json');
 
 const { DomainError, AccessDenied, InternalError } = require('./util/errors');
 const config = require('./config');

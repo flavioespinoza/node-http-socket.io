@@ -13,14 +13,46 @@ exports.getPersons = async (req, res, next) => {
   }
 };
 
+exports._addPersonPromise = async (req) => {
+	return new Promise(async (resolve) => {
+		try {
+			const person = await service.addPerson(req.body);
+			resolve({
+				success: true,
+				status_code: 201,
+				status_message: 'person_added',
+				req_body: req.body,
+				data: person
+			})
+		} catch (e) {
+			const error = new Error(e)
+			resolve({
+				success: false,
+				status_code: error.status_code, // 409 Conflict
+				status_message: error.message, // person_already_exists
+				req_body: req.body,
+				data: {}
+			})
+		}
+	})
+}
+
 exports.addPerson = async (req, res, next) => {
   try {
-    const person = await service.addPerson(req.body);
-    res.status(201).json(person);
+    const person = await this._addPersonPromise(req.body);
+    if (person.success){
+			res.status(person.status_code).json(person);
+		} else {
+			res.status(person.status_code).json(person);
+		}
   } catch (e) {
     next(e);
   }
 };
+
+
+
+
 
 exports.getPerson = async (req, res, next) => {
   try {
