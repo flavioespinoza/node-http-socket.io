@@ -39,6 +39,7 @@ exports._addPersonPromise = async (req) => {
 
 exports.addPerson = async (req, res, next) => {
 	try {
+		// REST API success or errors are always returned to client
 		const person = await this._addPersonPromise(req.body);
 		if (person.success) {
 			res.status(person.status_code).json(person);
@@ -46,6 +47,7 @@ exports.addPerson = async (req, res, next) => {
 			res.status(person.status_code).json(person);
 		}
 	} catch (e) {
+		// Network errors are captured here
 		next(e);
 	}
 };
